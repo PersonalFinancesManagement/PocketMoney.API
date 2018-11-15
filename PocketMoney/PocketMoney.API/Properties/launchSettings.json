@@ -9,15 +9,15 @@
     }
   },
   "profiles": {
-    "IIS Express": {
+    "Production": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api",
+      "launchUrl": "api.pocketmoney",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Production"
       }
     },
-    "PocketMoney.API": {
+    "Development": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api",

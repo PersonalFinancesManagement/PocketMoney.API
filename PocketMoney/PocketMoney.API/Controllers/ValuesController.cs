@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using PocketMoney.API.Model;
+using PocketMoney.Data.DataAccess;
 
 namespace PocketMoney.API.Controllers
 {
@@ -10,14 +10,20 @@ namespace PocketMoney.API.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private UserData _userData;
+        private readonly AppSettings _appSettings;
+        public ValuesController(IOptions<AppSettings> appsettings)
+        {
+            _appSettings = appsettings.Value;
+            _userData = new UserData(_appSettings.ConnectionString);
+        }
+        
+        
         // GET api/values
         [HttpGet]
         public IActionResult Get()
         {
-            return new OkObjectResult(
-            new {
-                value1 = "values"
-            });
+            return new OkObjectResult(_userData.GetUserInfo(1));
         }
 
         // GET api/values/5
