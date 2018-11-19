@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocketMoney.API", "PocketMoney.API\PocketMoney.API.csproj", "{EA36F948-D335-40C4-A480-C101CD726573}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{4188743B-47CD-4FEC-8F5D-1A3B3C729529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketMoney.Data", "PocketMoney.Data\PocketMoney.Data.csproj", "{5E1536C9-262B-453E-9698-D74C0936CFBE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{ABF5F449-C675-41BC-9562-F8F2D54FB0F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketMoney.Domain", "PocketMoney.Domain\PocketMoney.Domain.csproj", "{F36A6902-F794-4B2F-9B6E-798F0A1B0F85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketMoney.Application", "PocketMoney.Application\PocketMoney.Application.csproj", "{7FBFF1E5-CB49-4905-8D48-07DA7BE115BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,17 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EA36F948-D335-40C4-A480-C101CD726573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA36F948-D335-40C4-A480-C101CD726573}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA36F948-D335-40C4-A480-C101CD726573}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA36F948-D335-40C4-A480-C101CD726573}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E1536C9-262B-453E-9698-D74C0936CFBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E1536C9-262B-453E-9698-D74C0936CFBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E1536C9-262B-453E-9698-D74C0936CFBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E1536C9-262B-453E-9698-D74C0936CFBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F36A6902-F794-4B2F-9B6E-798F0A1B0F85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F36A6902-F794-4B2F-9B6E-798F0A1B0F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F36A6902-F794-4B2F-9B6E-798F0A1B0F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F36A6902-F794-4B2F-9B6E-798F0A1B0F85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FBFF1E5-CB49-4905-8D48-07DA7BE115BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FBFF1E5-CB49-4905-8D48-07DA7BE115BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FBFF1E5-CB49-4905-8D48-07DA7BE115BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FBFF1E5-CB49-4905-8D48-07DA7BE115BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ABF5F449-C675-41BC-9562-F8F2D54FB0F9} = {4188743B-47CD-4FEC-8F5D-1A3B3C729529}
+		{F36A6902-F794-4B2F-9B6E-798F0A1B0F85} = {ABF5F449-C675-41BC-9562-F8F2D54FB0F9}
+		{7FBFF1E5-CB49-4905-8D48-07DA7BE115BE} = {ABF5F449-C675-41BC-9562-F8F2D54FB0F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {636D3CCB-5B03-4459-B88B-009AFB9025D4}

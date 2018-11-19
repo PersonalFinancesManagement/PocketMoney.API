@@ -23,14 +23,14 @@ namespace PocketMoney.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new OkObjectResult(_userData.GetUserInfo(1));
+            return new OkObjectResult(_userData.GetUserInfo(3));
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            return new OkObjectResult(_userData.GetUserInfo(id));
         }
 
         // POST api/values
