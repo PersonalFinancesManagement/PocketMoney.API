@@ -17,6 +17,37 @@ namespace PocketMoney.Persistence.Infrastructure
             _appSettings = appSettings;
         }
 
+        public int Execute(string sql, object param = null, IDbTransaction transaction = null)
+        {
+            using (IDbConnection conn = new Npgsql.NpgsqlConnection(_appSettings.ConnectionString))
+            {
+                conn.Open();
+
+                if(transaction == null)
+                {
+                    using (var trans = conn.BeginTransaction())
+                    {
+                        var AffectedRows = conn.Execute(sql, param, trans);
+
+                        trans.Commit();
+
+                        return AffectedRows;
+                    }    
+                }
+                else
+                {
+                    using (transaction)
+                    {
+                        var AffectedRows = conn.Execute(sql, param, transaction);
+
+                        transaction.Commit();
+
+                        return AffectedRows;
+                    }
+                }
+            }
+        }
+
         public IEnumerable<dynamic> Query(string sql, object param = null, IDbTransaction transaction = null)
         {
             using(IDbConnection conn = new Npgsql.NpgsqlConnection(_appSettings.ConnectionString))
