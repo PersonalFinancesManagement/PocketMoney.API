@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using PocketMoney.Application.Repositories;
 using PocketMoney.Domain.Entities;
 
 namespace PocketMoney.Application.User.Commands {
@@ -11,12 +12,12 @@ namespace PocketMoney.Application.User.Commands {
             _userRepository = userRepository;
         }
 
-        public Task<Unit> Handle (CreateUserCommand request, CancellationToken cancellationToken) {
+        public async Task<Unit> Handle (CreateUserCommand request, CancellationToken cancellationToken) {
             var user = new UserModel (request.Name, request.Email, request.Password);
 
-            _userRepository.CreateUserAsync (user);
+            await _userRepository.CreateUserAsync (user);
 
-            return Task.FromResult (Unit.Value);
+            return await Task.FromResult (Unit.Value);
         }
     }
 }

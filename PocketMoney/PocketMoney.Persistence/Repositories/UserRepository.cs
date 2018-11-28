@@ -2,9 +2,9 @@ using System.Data;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Extensions.Configuration;
+using PocketMoney.Application.Repositories;
 using PocketMoney.Application.User.Commands;
 using PocketMoney.Domain.Entities;
-using PocketMoney.Persistence.Infrastructure;
 
 namespace PocketMoney.Persistence.Repositories {
     public class UserRepository : IUserRepository {
@@ -36,6 +36,18 @@ namespace PocketMoney.Persistence.Repositories {
                     trans.Commit ();
                 }
 
+            }
+        }
+
+        public async Task<object> GetUserByIdAsync(int ID)
+        {
+            var sql = @"SELECT id, name, email FROM Development.user WHERE id = @id";
+
+            using (IDbConnection conn = Connection)
+            {
+                conn.Open();
+
+                return await conn.QueryFirstAsync(sql, new {id = ID});
             }
         }
     }

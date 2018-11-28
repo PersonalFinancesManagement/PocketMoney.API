@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PocketMoney.Application.User.Queries;
 
 namespace PocketMoney.WebUI.Controllers
 {
@@ -10,18 +12,18 @@ namespace PocketMoney.WebUI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly IMediator _mediator;
+
+        public ValuesController(IMediator mediator)
         {
-            return new string[] { "value1", "value2" };
+            _mediator = mediator;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            return Ok(_mediator.Send(new GetUserByIdQuery(id)));
         }
 
         // POST api/values

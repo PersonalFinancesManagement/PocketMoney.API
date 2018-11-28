@@ -3,10 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PocketMoney.Application.Repositories;
 using PocketMoney.Application.User.Commands;
-using PocketMoney.Persistence.Infrastructure;
 using PocketMoney.Persistence.Repositories;
-using PocketMoney.WebUI.Infrastructure;
 
 namespace PocketMoney.WebUI {
     public class Startup {
@@ -26,7 +25,6 @@ namespace PocketMoney.WebUI {
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
 
             services.AddTransient<IUserRepository, UserRepository> ();
-            services.Configure<AppSettings> (Configuration.GetSection ("ConnectionString:postgres11"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
