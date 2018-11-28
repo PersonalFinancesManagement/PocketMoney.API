@@ -1,25 +1,22 @@
-﻿using MediatR;
-using PocketMoney.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using PocketMoney.Domain.Entities;
 
-namespace PocketMoney.Application.User.Commands
-{
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand>
-    {
-        private readonly ISqlConn _sqlConn;
+namespace PocketMoney.Application.User.Commands {
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand> {
+        private readonly IUserRepository _userRepository;
 
-        public CreateUserCommandHandler(ISqlConn sqlConn)
-        {
-            _sqlConn = sqlConn;
+        public CreateUserCommandHandler (IUserRepository userRepository) {
+            _userRepository = userRepository;
         }
 
-        public Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
-        {
-            _sqlConn
+        public Task<Unit> Handle (CreateUserCommand request, CancellationToken cancellationToken) {
+            var user = new UserModel (request.Name, request.Email, request.Password);
+
+            _userRepository.CreateUserAsync (user);
+
+            return Task.FromResult (Unit.Value);
         }
     }
 }
