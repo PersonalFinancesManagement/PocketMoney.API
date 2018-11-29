@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PocketMoney.Application.User.Commands;
 using PocketMoney.Application.User.Queries;
 
 namespace PocketMoney.WebUI.Controllers
@@ -21,15 +22,16 @@ namespace PocketMoney.WebUI.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return Ok(_mediator.Send(new GetUserByIdQuery(id)));
+            return Ok(await _mediator.Send(new GetUserByIdQuery(id)));
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] CreateUserCommand user)
         {
+            
         }
 
         // PUT api/values/5

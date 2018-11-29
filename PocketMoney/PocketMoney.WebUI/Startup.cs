@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +27,8 @@ namespace PocketMoney.WebUI {
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
 
             services.AddTransient<IUserRepository, UserRepository> ();
+
+            services.AddMediatR(AppDomain.CurrentDomain.Load("PocketMoney.Application"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +38,7 @@ namespace PocketMoney.WebUI {
             } else {
                 app.UseHsts ();
             }
+            
 
             app.UseHttpsRedirection ();
             app.UseMvc ();

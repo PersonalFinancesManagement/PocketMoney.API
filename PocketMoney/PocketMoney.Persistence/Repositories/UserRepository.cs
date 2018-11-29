@@ -9,15 +9,20 @@ using PocketMoney.Domain.Entities;
 namespace PocketMoney.Persistence.Repositories {
     public class UserRepository : IUserRepository {
 
-        public UserRepository (IConfiguration config) {
+        public UserRepository (IConfiguration config)
+        {
             _config = config;
+            _databaseSchema = _config.GetSection("DatabaseSettings:schema").Value;
         }
 
-        public IConfiguration _config { get; }
+        private readonly IConfiguration _config;
+
+        private readonly string _databaseSchema;
 
         public IDbConnection Connection {
-            get {
-                return new Npgsql.NpgsqlConnection (_config.GetSection ("ConnectionString:postgres11").ToString ());
+            get
+            {
+                return new Npgsql.NpgsqlConnection (_config.GetSection("DatabaseSettings:postgres11").Value);
             }
         }
 
@@ -39,15 +44,15 @@ namespace PocketMoney.Persistence.Repositories {
             }
         }
 
-        public async Task<object> GetUserByIdAsync(int ID)
+        public async Task<object> GetUserByIdAsync(int id)
         {
-            var sql = @"SELECT id, name, email FROM Development.user WHERE id = @id";
+            var sql = $@"SELECT name, email FROM {_databaseSchema}.users WHERE id = @id";
 
             using (IDbConnection conn = Connection)
             {
                 conn.Open();
 
-                return await conn.QueryFirstAsync(sql, new {id = ID});
+                return await conn.QueryFirstOrDefaultAsync(sql, new {id = id});
             }
         }
     }

@@ -2,7 +2,7 @@ using MediatR;
 
 namespace PocketMoney.Application.User.Queries
 {
-    public class GetUserByIdQuery : IRequest
+    public class GetUserByIdQuery : IRequest<object>
     {
         public GetUserByIdQuery(int id)
         {
