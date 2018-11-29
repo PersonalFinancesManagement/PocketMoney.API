@@ -13,4 +13,8 @@
     <ProjectReference Include="..\PocketMoney.Application\PocketMoney.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations" />
+  </ItemGroup>
+
 </Project>

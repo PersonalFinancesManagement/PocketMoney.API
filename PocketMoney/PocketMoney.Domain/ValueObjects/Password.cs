@@ -1,7 +1,7 @@
-﻿using Northwind.Domain.Infrastructure;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using PocketMoney.Domain.Infrastructure;
 
 namespace PocketMoney.Domain.ValueObjects
 {

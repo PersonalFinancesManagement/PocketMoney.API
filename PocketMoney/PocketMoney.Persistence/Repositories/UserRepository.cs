@@ -2,32 +2,19 @@ using System.Data;
 using System.Threading.Tasks;
 using Dapper;
 using Microsoft.Extensions.Configuration;
+using Npgsql;
 using PocketMoney.Application.Repositories;
-using PocketMoney.Application.User.Commands;
 using PocketMoney.Domain.Entities;
 
 namespace PocketMoney.Persistence.Repositories {
-    public class UserRepository : IUserRepository {
-
-        public UserRepository (IConfiguration config)
+    public class UserRepository : BaseRepository, IUserRepository {
+        
+        public UserRepository(IConfiguration config) : base(config)
         {
-            _config = config;
-            _databaseSchema = _config.GetSection("DatabaseSettings:schema").Value;
         }
 
-        private readonly IConfiguration _config;
-
-        private readonly string _databaseSchema;
-
-        public IDbConnection Connection {
-            get
-            {
-                return new Npgsql.NpgsqlConnection (_config.GetSection("DatabaseSettings:postgres11").Value);
-            }
-        }
-
-        public async Task CreateUserAsync (UserModel user) {
-            var sql = @"INSERT INTO Development.user(name, email, password) VALUES (@name, @email, @password)";
+        public async Task CreateUserAsync (User user) {
+            var sql = $"INSERT INTO \"{_databaseSchema}\".user(name, email, password) VALUES (@name, @email, @password)";
 
             using (IDbConnection conn = Connection) {
                 conn.Open ();
@@ -46,7 +33,8 @@ namespace PocketMoney.Persistence.Repositories {
 
         public async Task<object> GetUserByIdAsync(int id)
         {
-            var sql = $@"SELECT name, email FROM {_databaseSchema}.users WHERE id = @id";
+            //TODO get account ids and names and make HATEOAS
+            var sql = $"SELECT name, email FROM \"{_databaseSchema}\".users WHERE id = @id";
 
             using (IDbConnection conn = Connection)
             {

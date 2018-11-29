@@ -1,7 +1,5 @@
-﻿using PocketMoney.Domain.Enumerations;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using PocketMoney.Domain.Enumerations;
 
 namespace PocketMoney.Domain.Entities
 {

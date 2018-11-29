@@ -1,14 +1,14 @@
 using MediatR;
 
-namespace PocketMoney.Application.User.Queries
+namespace PocketMoney.Application.Models.Users.Queries
 {
     public class GetUserByIdQuery : IRequest<object>
     {
         public GetUserByIdQuery(int id)
         {
-            this.Id = id;
+            Id = id;
         }
 
-        public int Id { get; private set; }
+        public int Id { get; }
     }
 }

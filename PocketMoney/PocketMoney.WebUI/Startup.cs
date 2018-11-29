@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PocketMoney.Application.Repositories;
-using PocketMoney.Application.User.Commands;
 using PocketMoney.Persistence.Repositories;
 
 namespace PocketMoney.WebUI {
@@ -27,6 +26,7 @@ namespace PocketMoney.WebUI {
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
 
             services.AddTransient<IUserRepository, UserRepository> ();
+            services.AddTransient<IAccountRepository, AccountRepository>();
 
             services.AddMediatR(AppDomain.CurrentDomain.Load("PocketMoney.Application"));
         }

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PocketMoney.Application.User.Commands;
-using PocketMoney.Application.User.Queries;
+using PocketMoney.Application.Models.Accounts.Queries;
+using PocketMoney.Application.Models.Users.Commands;
+using PocketMoney.Application.Models.Users.Queries;
 
 namespace PocketMoney.WebUI.Controllers
 {

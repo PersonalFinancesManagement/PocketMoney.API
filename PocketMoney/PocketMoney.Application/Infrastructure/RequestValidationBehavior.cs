@@ -1,11 +1,12 @@
-﻿using FluentValidation;
-using MediatR;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
+using MediatR;
+using ValidationException = PocketMoney.Application.Exceptions.ValidationException;
 
-namespace Northwind.Application.Infrastructure
+namespace PocketMoney.Application.Infrastructure
 {
     public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
@@ -29,7 +30,7 @@ namespace Northwind.Application.Infrastructure
 
             if (failures.Count != 0)
             {
-                throw new Exceptions.ValidationException(failures);
+                throw new ValidationException(failures);
             }
 
             return next();

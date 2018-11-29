@@ -3,9 +3,8 @@ using System.Threading.Tasks;
 using MediatR;
 using PocketMoney.Application.Exceptions;
 using PocketMoney.Application.Repositories;
-using PocketMoney.Application.User.Commands;
 
-namespace PocketMoney.Application.User.Queries
+namespace PocketMoney.Application.Models.Users.Queries
 {
     public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, object>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Northwind.Application.Exceptions
+namespace PocketMoney.Application.Exceptions
 {
     public class DeleteFailureException : Exception
     {
